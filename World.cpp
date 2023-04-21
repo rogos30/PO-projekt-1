@@ -65,6 +65,8 @@ void World::Move(int destinationX, int destinationY, Organism* organism) {
 	board[destinationY][destinationX] = organism;
 }
 
+//KOMENTARZ
+
 int World::GetSizeX() {
 	return sizeX;
 }
