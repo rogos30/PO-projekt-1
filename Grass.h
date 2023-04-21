@@ -1,0 +1,10 @@
+#pragma once
+#include "Plant.h"
+
+class Grass : public Plant {
+public:
+	Grass(int positionX, int positionY, World* world);
+	void Reproduce() override;
+	~Grass();
+};
+
