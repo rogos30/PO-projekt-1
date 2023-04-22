@@ -1,15 +1,22 @@
-#include <cstdlib>
-#include <iostream>
-#include "Animal.h"
-#include "Constants.h"
+#include "Human.h"
 
-Animal::Animal() {}
+Human::Human(int positionX, int positionY, World* world) {
+	this->strength = 5;
+	this->initiative = 4;
+	this->abilityCooldown = 0;
+	this->positionX = positionX;
+	this->positionY = positionY;
+	this->world = world;
+	this->symbol = 'H';
+}
 
-void Animal::Action() {
-	cout << "Animal::Action()" << endl;
-	int direction = rand() % 4;
+void Human::Action() {
+	if (GetAbilityCooldown() >= 5) SetStrength(GetAbilityCooldown());
+	SetAbilityCooldown(GetAbilityCooldown() - 1);
+
+	char direction = world->GetInput();
 	switch (direction) {
-	case UP:
+	case UP_ARROW:
 		if (GetPositionY() - 1 >= 0) {
 			if (world->GetBoardAt(GetPositionX(), GetPositionY() - 1) == nullptr) {
 				world->Move(GetPositionX(), GetPositionY() - 1, this);
@@ -20,7 +27,7 @@ void Animal::Action() {
 			}
 		}
 		break;
-	case DOWN:
+	case DOWN_ARROW:
 		if (GetPositionY() + 1 < this->world->GetSizeY()) {
 			if (world->GetBoardAt(GetPositionX(), GetPositionY() + 1) == nullptr) {
 				world->Move(GetPositionX(), GetPositionY() + 1, this);
@@ -31,7 +38,7 @@ void Animal::Action() {
 			}
 		}
 		break;
-	case LEFT:
+	case LEFT_ARROW:
 		if (GetPositionX() - 1 >= 0) {
 			if (world->GetBoardAt(GetPositionX() - 1, GetPositionY()) == nullptr) {
 				world->Move(GetPositionX() - 1, GetPositionY(), this);
@@ -42,7 +49,7 @@ void Animal::Action() {
 			}
 		}
 		break;
-	case RIGHT:
+	case RIGHT_ARROW:
 		if (GetPositionX() + 1 < this->world->GetSizeX()) {
 			if (world->GetBoardAt(GetPositionX() + 1, GetPositionY()) == nullptr) {
 				world->Move(GetPositionX() + 1, GetPositionY(), this);
@@ -56,10 +63,19 @@ void Animal::Action() {
 	}
 }
 
-void Animal::Collision(Organism* organism) {
-	if (organism->GetSymbol() == this->symbol) {
-		Reproduce();
-	}
-	else {
-	}
+void Human::Reproduce() {
 }
+
+void Human::Ability() {
+	SetAbilityCooldown(10);
+}
+
+int Human::GetAbilityCooldown() {
+	return abilityCooldown;
+}
+
+void Human::SetAbilityCooldown(int cooldown) {
+	abilityCooldown = cooldown;
+}
+
+Human::~Human() {}

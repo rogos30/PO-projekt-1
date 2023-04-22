@@ -10,6 +10,8 @@ private:
     int sizeX, sizeY, turn=0;
     Organism*** board;
     LinkedList* organisms;
+    bool humanAlive = true;
+    char input;
 
 public:
     World();
@@ -21,6 +23,11 @@ public:
     void Move(int destinationX, int destinationY, Organism* organism);
     int GetSizeX();
     int GetSizeY();
+    char GetInput();
+    void SetInput();
+    bool GetHumanAlive();
+    void SetHumanAlive(bool humanAlive);
+    LinkedList* GetOrganisms();
     Organism* GetBoardAt(int positionX, int positionY);
     ~World();
 };

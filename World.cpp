@@ -20,15 +20,29 @@ World::World(int sizeX, int sizeY) {
 
 void World::SimulateTurn() {
 	turn++;
-	system("CLS");
+	
+	char userInput = 0;
+	while ((userInput = _getch() )!= ENTER) {
+		input = userInput;
+	}
 
-	for (int i=0; i<organisms->Length(); i++) organisms->GetAtPos(i)->GetOrganism()->Action();
+	system("CLS");
+	//for (int i= organisms->Length()-1; i>=0; i++) organisms->GetAtPos(i)->GetOrganism()->Action();
+
+	Node* tmp = organisms->GetLast();
+	while (tmp != nullptr) {
+		cout << "chuj" << endl;
+		tmp->GetOrganism()->Action();
+		tmp = tmp->GetPrevious();
+	}
 
 	this->DrawWorld();
 
-	for (int i = 0; i < organisms->Length(); i++)
-		std::cout << organisms->GetAtPos(i)->GetOrganism()->GetSymbol() << " jest na polu: (" << organisms->GetAtPos(i)->GetOrganism()->GetPositionX() << ", " << 
-		organisms->GetAtPos(i)->GetOrganism()->GetPositionY() << ")" << std::endl;
+	organisms->Print();
+
+	//for (int i = 0; i < organisms->Length(); i++)
+	//	std::cout << organisms->GetAtPos(i)->GetOrganism()->GetSymbol() << " jest na polu: (" << organisms->GetAtPos(i)->GetOrganism()->GetPositionX() << ", " << 
+	//	organisms->GetAtPos(i)->GetOrganism()->GetPositionY() << ")" << std::endl;
 }
 
 void World::DrawWorld() {
@@ -53,19 +67,17 @@ void World::DrawWorld() {
 void World::AddOrganism(Organism* organism, int positionX, int positionY) {
 	board[positionY][positionX] = organism;
 	organisms->InsertAfter(organism, organisms->GetLastWith(organism->GetInitiative()));
+	std::cout << "Dodano organizm: " << organism->GetSymbol() << " na pozycje: (" << positionX << ", " << positionY << ")" << std::endl;
 }
 
 void World::Kill(Organism* organism) {
-	board[organism->GetPositionY()][organism->GetPositionX()] = nullptr;
-	organisms->RemoveNode(organisms->GetAtPos(organisms->GetIndexWith(organism)));
 }
 
 void World::Move(int destinationX, int destinationY, Organism* organism) {
+	std::cout << "Przesunieto organizm: " << organism->GetSymbol() << " z pozycji: (" << organism->GetPositionX() << ", " << organism->GetPositionY() << ") na pozycje: (" << destinationX << ", " << destinationY << ")" << std::endl;
 	board[organism->GetPositionY()][organism->GetPositionX()] = nullptr;
 	board[destinationY][destinationX] = organism;
 }
-
-//KOMENTARZ
 
 int World::GetSizeX() {
 	return sizeX;
@@ -73,6 +85,26 @@ int World::GetSizeX() {
 
 int World::GetSizeY() {
 	return sizeY;
+}
+
+char World::GetInput() {
+	return input;
+}
+
+void World::SetInput() {
+	this->input = _getch();
+}
+
+bool World::GetHumanAlive() {
+	return humanAlive;
+}
+
+void World::SetHumanAlive(bool humanAlive) {
+	this->humanAlive = humanAlive;
+}
+
+LinkedList* World::GetOrganisms() {
+	return organisms;
 }
 
 Organism* World::GetBoardAt(int positionX, int positionY) {

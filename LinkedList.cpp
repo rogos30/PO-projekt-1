@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Node::Node(Organism* organism) : organism(organism), next(nullptr) {}
+Node::Node(Organism* organism) : organism(organism), next(nullptr), previous(nullptr) {}
 
 Organism* Node::GetOrganism() {
 	return this->organism;
@@ -27,7 +27,6 @@ void Node::SetPrevious(Node* previous) {
 
 
 
-
 LinkedList::LinkedList() : head(nullptr), tail(nullptr) {}
 
 const int LinkedList::Length() {
@@ -42,11 +41,18 @@ const int LinkedList::Length() {
 
 void LinkedList::Print() {
 	Node* tmp = head;
+	int counter = 0;
 	while (tmp != NULL) {
-		cout << tmp->GetOrganism()->GetSymbol() << " ";
+		cout << counter << ") " << tmp->GetOrganism()->GetSymbol() << " i=" << tmp->GetOrganism()->GetInitiative() << " previous: ";
+		if (tmp->GetPrevious() != nullptr) cout <<  tmp->GetPrevious()->GetOrganism()->GetSymbol();
+		else cout << "none";
+
+		cout << ", next: ";
+		if (tmp->GetNext() != nullptr) cout << tmp->GetNext()->GetOrganism()->GetSymbol() << endl;
+		else cout << "none" << endl;
 		tmp = tmp->GetNext();
+		counter++;
 	}
-	cout << endl;
 }
 
 int LinkedList::GetIndexWith(Organism* organism) {
@@ -74,7 +80,7 @@ Node* LinkedList::GetLastWith(int initiative) {
 	if (tail == NULL) return NULL;
 	Node* tmp = tail;
 	while (tmp != NULL) {
-		if (tmp->GetOrganism()->GetInitiative() == initiative) return tmp;
+		if (tmp->GetOrganism()->GetInitiative() <= initiative) return tmp;
 		tmp = tmp->GetPrevious();
 	}
 	return NULL;
@@ -130,11 +136,19 @@ void LinkedList::RemoveLast() {
 }
 
 void LinkedList::RemoveNode(Node* node) {
-	if (node == head) this->RemoveFirst();
-	else if (node == tail) this->RemoveLast();
+	if (node == nullptr) return;
+	std::cout << "Removing node with organism: " << node->GetOrganism()->GetSymbol() << std::endl;
+	if (node->GetPrevious() == nullptr) this->RemoveFirst();
+	else if (node->GetNext() == nullptr) this->RemoveLast();
 	else {
 		node->GetNext()->SetPrevious(node->GetPrevious());
 		node->GetPrevious()->SetNext(node->GetNext());
 		delete node;
 	}
 }
+
+/*
+Node* temp = head;
+while (temp != nullptr) {
+	if (organism.inicjatywa < temp.inicjatywa)
+}*/
