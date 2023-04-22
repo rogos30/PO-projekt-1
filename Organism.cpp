@@ -31,6 +31,10 @@ void Organism::SetInitiative(int initiative) {
 	this->initiative = initiative;
 }
 
+int Organism::getAge() {
+	return age;
+}
+
 int Organism::GetPositionX() {
 	return positionX;
 }

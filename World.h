@@ -14,7 +14,6 @@ private:
     char input;
 
 public:
-    World();
     World(int sizeX, int sizeY);
     void SimulateTurn();
     void DrawWorld();
@@ -24,7 +23,8 @@ public:
     int GetSizeX();
     int GetSizeY();
     char GetInput();
-    void SetInput();
+    int getTurn();
+    void SetInput(int ch);
     bool GetHumanAlive();
     void SetHumanAlive(bool humanAlive);
     LinkedList* GetOrganisms();

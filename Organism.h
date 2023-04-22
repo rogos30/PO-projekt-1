@@ -25,6 +25,7 @@ public:
 	int GetPositionY();
 	void SetPositionY(int positionY);
 	char GetSymbol();
+	int getAge();
 	World* GetWorld();
 	~Organism();
 };

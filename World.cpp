@@ -2,12 +2,11 @@
 #include <Windows.h>
 #include "World.h"
 
-World::World() {}
-
 World::World(int sizeX, int sizeY) {
 	this->sizeX = sizeX;
 	this->sizeY = sizeY;
 	this->turn = 0;
+	this->input = 0;
 	board = new Organism**[sizeY];
 	for (int i = 0; i < sizeY; i++) {
 		board[i] = new Organism * [sizeX];
@@ -19,30 +18,24 @@ World::World(int sizeX, int sizeY) {
 }
 
 void World::SimulateTurn() {
-	turn++;
-	
-	char userInput = 0;
-	while ((userInput = _getch() )!= ENTER) {
-		input = userInput;
-	}
-
-	system("CLS");
 	//for (int i= organisms->Length()-1; i>=0; i++) organisms->GetAtPos(i)->GetOrganism()->Action();
 
-	Node* tmp = organisms->GetLast();
-	while (tmp != nullptr) {
-		cout << "chuj" << endl;
-		tmp->GetOrganism()->Action();
-		tmp = tmp->GetPrevious();
+	Node* node = organisms->getHead();
+	while (node != nullptr) {
+		node->getOrganism()->Action();
+		node = node->getNext();
 	}
-
 	this->DrawWorld();
-
-	organisms->Print();
+	organisms->print();
 
 	//for (int i = 0; i < organisms->Length(); i++)
 	//	std::cout << organisms->GetAtPos(i)->GetOrganism()->GetSymbol() << " jest na polu: (" << organisms->GetAtPos(i)->GetOrganism()->GetPositionX() << ", " << 
 	//	organisms->GetAtPos(i)->GetOrganism()->GetPositionY() << ")" << std::endl;
+	turn++;
+}
+
+int World::getTurn() {
+	return turn;
 }
 
 void World::DrawWorld() {
@@ -66,8 +59,9 @@ void World::DrawWorld() {
 
 void World::AddOrganism(Organism* organism, int positionX, int positionY) {
 	board[positionY][positionX] = organism;
-	organisms->InsertAfter(organism, organisms->GetLastWith(organism->GetInitiative()));
-	std::cout << "Dodano organizm: " << organism->GetSymbol() << " na pozycje: (" << positionX << ", " << positionY << ")" << std::endl;
+	organism->SetPositionX(positionX);
+	organism->SetPositionY(positionY);
+	organisms->add(organism);
 }
 
 void World::Kill(Organism* organism) {
@@ -91,8 +85,8 @@ char World::GetInput() {
 	return input;
 }
 
-void World::SetInput() {
-	this->input = _getch();
+void World::SetInput(int ch) {
+	this->input = ch;
 }
 
 bool World::GetHumanAlive() {
