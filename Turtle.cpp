@@ -22,6 +22,7 @@ void Turtle::Action() {
 				Collision(world->GetBoardAt(GetPositionX(), GetPositionY() - 1));
 			}
 		}
+		break;
 	case DOWN:
 		if (GetPositionY() + 1 < this->world->GetSizeY()) {
 			if (world->GetBoardAt(GetPositionX(), GetPositionY() + 1) == nullptr) {
@@ -32,6 +33,7 @@ void Turtle::Action() {
 				Collision(world->GetBoardAt(GetPositionX(), GetPositionY() + 1));
 			}
 		}
+		break;
 	case LEFT:
 		if (GetPositionX() - 1 >= 0) {
 			if (world->GetBoardAt(GetPositionX() - 1, GetPositionY()) == nullptr) {
@@ -42,6 +44,7 @@ void Turtle::Action() {
 				Collision(world->GetBoardAt(GetPositionX() - 1, GetPositionY()));
 			}
 		}
+		break;
 	case RIGHT:
 		if (GetPositionX() + 1 < this->world->GetSizeX()) {
 			if (world->GetBoardAt(GetPositionX() + 1, GetPositionY()) == nullptr) {
@@ -52,6 +55,9 @@ void Turtle::Action() {
 				Collision(world->GetBoardAt(GetPositionX() + 1, GetPositionY()));
 			}
 		}
+	default:
+		cout << "T was too lazy to move" << endl;
+		break;
 	}
 }
 
@@ -75,6 +81,15 @@ void Turtle::Reproduce() {
 	else if (GetPositionX() + 1 < this->world->GetSizeX() && world->GetBoardAt(GetPositionX() + 1, GetPositionY()) == nullptr) {
 		Turtle* baby = new Turtle(GetPositionX() + 1, GetPositionY(), world);
 		world->AddOrganism(baby, baby->GetPositionX(), baby->GetPositionY());
+	}
+}
+
+bool Turtle::AttackReflected(Organism* attacker) {
+	if (attacker->GetStrength() < 5) {
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 

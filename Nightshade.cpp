@@ -1,12 +1,17 @@
 #include "Nightshade.h"
+#include "Animal.h"
 
 Nightshade::Nightshade(int positionX, int positionY, World* world) {
-	this->strength = 0;
+	this->strength = 99;
 	this->initiative = 0;
 	this->positionX = positionX;
 	this->positionY = positionY;
 	this->world = world;
 	this->symbol = 'n';
+}
+
+bool Nightshade::ReturnKill() {
+	return true;
 }
 
 void Nightshade::Reproduce() {

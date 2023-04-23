@@ -39,7 +39,7 @@ LinkedList::~LinkedList() {
 }
 
 void LinkedList::add(Organism* organism) {
-	cout << "Trying to add: " << organism->GetSymbol() << endl;
+	//cout << "Trying to add: " << organism->GetSymbol() << endl;
 	Node* node = head;
 	if (head == nullptr) {
 		head = new Node(organism, nullptr);
@@ -105,7 +105,7 @@ void LinkedList::remove(Organism* organism) {
 			}
 			else {
 				prev->setNext(node->getNext());
-				delete node;
+				//delete node;
 				size--;
 			}
 			return;
@@ -142,7 +142,7 @@ void LinkedList::removeHead() {
 	if (head != NULL) {
 		Node* node = head;
 		head = head->getNext();
-		delete node;
+		//delete node;
 		size--;
 	}
 }
@@ -161,7 +161,7 @@ void LinkedList::removeTail() {
 					prev->setNext(NULL);
 					tail = prev;
 				}
-				delete node;
+				//delete node;
 				size--;
 				return;
 			}
@@ -188,7 +188,7 @@ void LinkedList::print() {
 	Node* node = head;
 	cout << "Organisms: " << size << endl;
 	while (node != NULL) {
-		cout << node->getOrganism()->GetSymbol() << " " << node->getOrganism()->GetInitiative() << " ";
+		cout << node->getOrganism()->GetSymbol() << node->getOrganism()->GetStrength() << " ";
 		node = node->getNext();
 	}
 	cout << endl;

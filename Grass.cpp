@@ -2,7 +2,7 @@
 #include "Constants.h"
 
 Grass::Grass(int positionX, int positionY, World* world) {
-	this->strength = 0;
+	this->strength = 5;
 	this->initiative = 0;
 	this->positionX = positionX;
 	this->positionY = positionY;

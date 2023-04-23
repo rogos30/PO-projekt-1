@@ -22,8 +22,9 @@ void World::SimulateTurn() {
 
 	Node* node = organisms->getHead();
 	while (node != nullptr) {
-		node->getOrganism()->Action();
+		if (node->getOrganism()!=nullptr) node->getOrganism()->Action();
 		node = node->getNext();
+		//system("pause");
 	}
 	this->DrawWorld();
 	organisms->print();
@@ -65,10 +66,12 @@ void World::AddOrganism(Organism* organism, int positionX, int positionY) {
 }
 
 void World::Kill(Organism* organism) {
+	board[organism->GetPositionY()][organism->GetPositionX()] = nullptr;
+	organisms->remove(organism);
 }
 
 void World::Move(int destinationX, int destinationY, Organism* organism) {
-	std::cout << "Przesunieto organizm: " << organism->GetSymbol() << " z pozycji: (" << organism->GetPositionX() << ", " << organism->GetPositionY() << ") na pozycje: (" << destinationX << ", " << destinationY << ")" << std::endl;
+	std::cout << organism->GetSymbol() << " moved from (" << organism->GetPositionX() << ", " << organism->GetPositionY() << ") to (" << destinationX << ", " << destinationY << ")" << std::endl;
 	board[organism->GetPositionY()][organism->GetPositionX()] = nullptr;
 	board[destinationY][destinationX] = organism;
 }

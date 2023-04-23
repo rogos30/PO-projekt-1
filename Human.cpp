@@ -60,14 +60,19 @@ void Human::Action() {
 			}
 		}
 		break;
+	case SPACE:
+		Ability();
+		break;
 	}
+	cout << "Human strength: " << GetStrength() << endl;
+	cout << "Human cooldown: " << GetAbilityCooldown() << endl;
 }
 
 void Human::Reproduce() {
 }
 
 void Human::Ability() {
-	SetAbilityCooldown(10);
+	if (GetAbilityCooldown()<=0) SetAbilityCooldown(10);
 }
 
 int Human::GetAbilityCooldown() {

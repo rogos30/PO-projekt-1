@@ -4,6 +4,6 @@
 class Animal : public Organism{
 public:
 	Animal();
-	void Action();
+	void Action() override;
 	void Collision(Organism* organism) override;
 };

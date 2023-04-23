@@ -9,6 +9,15 @@ Dandelion::Dandelion(int positionX, int positionY, World* world) {
 	this->symbol = 'd';
 }
 
+void Dandelion::Action() {
+	for (int i = 0; i < DANDELION_SPREAD_TRIES; i++) {
+		int spread = rand() % PLANT_SPREAD_CHANCE;
+		if (spread == 0) {
+			Reproduce();
+		}
+	}
+}
+
 void Dandelion::Reproduce() {
 	int direction = rand() % 4;
 

@@ -45,6 +45,7 @@ void Fox::Action() {
 				Collision(world->GetBoardAt(GetPositionX(), GetPositionY() - 1));
 			}
 		}
+		break;
 	case DOWN:
 		if (GetPositionY() + 1 < this->world->GetSizeY()) {
 			if (world->GetBoardAt(GetPositionX(), GetPositionY() + 1) == nullptr) {
@@ -55,6 +56,7 @@ void Fox::Action() {
 				Collision(world->GetBoardAt(GetPositionX(), GetPositionY() + 1));
 			}
 		}
+		break;
 	case LEFT:
 		if (GetPositionX() - 1 >= 0) {
 			if (world->GetBoardAt(GetPositionX() - 1, GetPositionY()) == nullptr) {
@@ -65,6 +67,7 @@ void Fox::Action() {
 				Collision(world->GetBoardAt(GetPositionX() - 1, GetPositionY()));
 			}
 		}
+		break;
 	case RIGHT:
 		if (GetPositionX() + 1 < this->world->GetSizeX()) {
 			if (world->GetBoardAt(GetPositionX() + 1, GetPositionY()) == nullptr) {
@@ -75,6 +78,7 @@ void Fox::Action() {
 				Collision(world->GetBoardAt(GetPositionX() + 1, GetPositionY()));
 			}
 		}
+		break;
 	}
 }
 

@@ -11,6 +11,22 @@ Organism::Organism(int strength, int initiative, int positionX, int positionY, W
 	this->world = world;
 }
 
+bool Organism::AttackReflected(Organism* attacker) {
+	return false;
+}
+
+bool Organism::AttackAvoided() {
+	return false;
+}
+
+bool Organism::StrengthBoost() {
+	return false;
+}
+
+bool Organism::ReturnKill() {
+	return false;
+}
+
 void Organism::Draw() {
 	std::cout << symbol;
 }

@@ -9,6 +9,10 @@ Guarana::Guarana(int positionX, int positionY, World* world) {
 	this->symbol = 'u';
 }
 
+bool Guarana::StrengthBoost() {
+	return true;
+}
+
 void Guarana::Reproduce() {
 	int direction = rand() % 4;
 
