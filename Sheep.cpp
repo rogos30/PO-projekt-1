@@ -1,4 +1,4 @@
-#include "Sheep.h"
+#include "Constants.h"
 
 Sheep::Sheep(int positionX, int positionY, World* world) {
 	this->strength = 4;

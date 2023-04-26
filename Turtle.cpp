@@ -1,4 +1,4 @@
-#include "Turtle.h"
+#include "Constants.h"
 
 Turtle::Turtle(int positionX, int positionY, World* world) {
 	this->strength = 2;
@@ -10,6 +10,7 @@ Turtle::Turtle(int positionX, int positionY, World* world) {
 }
 
 void Turtle::Action() {
+	this->age++;
 	int direction = rand() % 16;
 	switch (direction) {
 	case UP:

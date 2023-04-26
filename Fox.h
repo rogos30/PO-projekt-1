@@ -1,5 +1,4 @@
 #pragma once
-#include "Animal.h"
 #include "Constants.h"
 
 class Fox : public Animal {

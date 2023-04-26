@@ -1,5 +1,5 @@
 #pragma once
-#include "World.h"
+#include "Constants.h"
 
 class World;
 
@@ -12,6 +12,7 @@ protected:
 public:
 	Organism();
 	Organism(int strength, int initiative, int positionX, int positionY, World* world);
+	Organism(int strength, int initiative, int positionX, int positionY, int age, World* world);
 	virtual void Action() = 0;
 	virtual void Collision(Organism* organism) = 0;
 	virtual bool AttackReflected(Organism* attacker);
@@ -29,7 +30,7 @@ public:
 	int GetPositionY();
 	void SetPositionY(int positionY);
 	char GetSymbol();
-	int getAge();
+	int GetAge();
 	World* GetWorld();
 	~Organism();
 };

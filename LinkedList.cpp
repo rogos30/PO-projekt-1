@@ -1,7 +1,4 @@
-#include "LinkedList.h"
-#include "Organism.h"
 #include "Constants.h"
-#include <iostream>
 
 using namespace std;
 
@@ -14,15 +11,15 @@ Node::~Node() {
 	delete organism;
 }
 
-Organism* Node::getOrganism() {
+Organism* Node::GetOrganism() {
 	return organism;
 }
 
-Node* Node::getNext() {
+Node* Node::GetNext() {
 	return next;
 }
 
-void Node::setNext(Node* next) {
+void Node::SetNext(Node* next) {
 	this->next = next;
 }
 
@@ -34,11 +31,11 @@ LinkedList::LinkedList() {
 
 LinkedList::~LinkedList() {
 	while (head != NULL) {
-		removeHead();
+		RemoveHead();
 	}
 }
 
-void LinkedList::add(Organism* organism) {
+void LinkedList::Add(Organism* organism) {
 	//cout << "Trying to add: " << organism->GetSymbol() << endl;
 	Node* node = head;
 	if (head == nullptr) {
@@ -48,7 +45,7 @@ void LinkedList::add(Organism* organism) {
 		return;
 	}
 	while (node != nullptr) {
-		if (node->getOrganism()->GetInitiative() < organism->GetInitiative()) {
+		if (node->GetOrganism()->GetInitiative() < organism->GetInitiative()) {
 			if (node == head) {
 				head = new Node(organism, node);
 				size++;
@@ -56,16 +53,16 @@ void LinkedList::add(Organism* organism) {
 			}
 			else {
 				Node* prev = head;
-				while (prev->getNext() != node) {
-					prev = prev->getNext();
+				while (prev->GetNext() != node) {
+					prev = prev->GetNext();
 				}
-				prev->setNext(new Node(organism, node));
+				prev->SetNext(new Node(organism, node));
 				size++;
 				return;
 			}
 		}
-		else if (node->getOrganism()->GetInitiative() == organism->GetInitiative()) {
-			if (node->getOrganism()->getAge() < organism->getAge()) {
+		else if (node->GetOrganism()->GetInitiative() == organism->GetInitiative()) {
+			if (node->GetOrganism()->GetAge() < organism->GetAge()) {
 				if (node == head) {
 					head = new Node(organism, node);
 					size++;
@@ -73,92 +70,92 @@ void LinkedList::add(Organism* organism) {
 				}
 				else {
 					Node* prev = head;
-					while (prev->getNext() != node) {
-						prev = prev->getNext();
+					while (prev->GetNext() != node) {
+						prev = prev->GetNext();
 					}
-					prev->setNext(new Node(organism, node));
+					prev->SetNext(new Node(organism, node));
 					size++;
 					return;
 				}
 			}
 		}
-		if (node->getNext() == nullptr) {
-			node->setNext(new Node(organism, nullptr));
-			tail = node->getNext();
+		if (node->GetNext() == nullptr) {
+			node->SetNext(new Node(organism, nullptr));
+			tail = node->GetNext();
 			size++;
 			return;
 		}
-		node = node->getNext();
+		node = node->GetNext();
 	}
 }
 
-void LinkedList::remove(Organism* organism) {
+void LinkedList::Remove(Organism* organism) {
 	Node* node = head;
 	Node* prev = NULL;
 	while (node != NULL) {
-		if (node->getOrganism() == organism) {
+		if (node->GetOrganism() == organism) {
 			if (prev == NULL) {
-				removeHead();
+				RemoveHead();
 			}
-			else if (node->getNext() == NULL) {
-				removeTail();
+			else if (node->GetNext() == NULL) {
+				RemoveTail();
 			}
 			else {
-				prev->setNext(node->getNext());
+				prev->SetNext(node->GetNext());
 				//delete node;
 				size--;
 			}
 			return;
 		}
 		prev = node;
-		node = node->getNext();
+		node = node->GetNext();
 	}
 }
 
-void LinkedList::remove(Node* node) {
+void LinkedList::Remove(Node* node) {
 	Node* prev = NULL;
 	Node* current = head;
 	while (current != NULL) {
 		if (current == node) {
 			if (prev == NULL) {
-				removeHead();
+				RemoveHead();
 			}
-			else if (current->getNext() == NULL) {
-				removeTail();
+			else if (current->GetNext() == NULL) {
+				RemoveTail();
 			}
 			else {
-				prev->setNext(current->getNext());
+				prev->SetNext(current->GetNext());
 				delete current;
 				size--;
 			}
 			return;
 		}
 		prev = current;
-		current = current->getNext();
+		current = current->GetNext();
 	}
 }
 
-void LinkedList::removeHead() {
+void LinkedList::RemoveHead() {
 	if (head != NULL) {
 		Node* node = head;
-		head = head->getNext();
+		head = head->GetNext();
 		//delete node;
 		size--;
 	}
 }
 
-void LinkedList::removeTail() {
+void LinkedList::RemoveTail() {
 	if (tail != NULL) {
 		Node* node = head;
 		Node* prev = NULL;
 		while (node != NULL) {
-			if (node->getNext() == NULL) {
+			if (node->GetNext() == NULL) {
 				if (prev == NULL) {
 					head = NULL;
 					tail = NULL;
 				}
 				else {
-					prev->setNext(NULL);
+					prev->SetNext(NULL);
 					tail = prev;
 				}
 				//delete node;
@@ -166,30 +163,30 @@ void LinkedList::removeTail() {
 				return;
 			}
 			prev = node;
-			node = node->getNext();
+			node = node->GetNext();
 		}
 	}
 }
 
-Node* LinkedList::getHead() {
+Node* LinkedList::GetHead() {
 	return head;
 }
 
-Node* LinkedList::getTail() {
+Node* LinkedList::GetTail() {
 	return tail;
 }
 
 
-int LinkedList::getSize() {
+int LinkedList::GetSize() {
 	return size;
 }
 
-void LinkedList::print() {
+void LinkedList::Print() {
 	Node* node = head;
 	cout << "Organisms: " << size << endl;
 	while (node != NULL) {
-		cout << node->getOrganism()->GetSymbol() << node->getOrganism()->GetStrength() << " ";
-		node = node->getNext();
+		cout << node->GetOrganism()->GetSymbol() << node->GetOrganism()->GetAge() << " ";
+		node = node->GetNext();
 	}
 	cout << endl;
 }

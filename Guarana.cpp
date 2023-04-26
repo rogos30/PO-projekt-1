@@ -1,4 +1,4 @@
-#include "Guarana.h"
+#include "Constants.h"
 
 Guarana::Guarana(int positionX, int positionY, World* world) {
 	this->strength = 0;

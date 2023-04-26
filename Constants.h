@@ -1,9 +1,27 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <cstdlib>
 #include <ctime>
 #include <Windows.h>
 #include <conio.h>
+
+#include "Organism.h"
+#include "LinkedList.h"
+#include "World.h"
+#include "Animal.h"
+#include "Plant.h"
+#include "Human.h"
+#include "Antelope.h"
+#include "Fox.h"
+#include "Sheep.h"
+#include "Turtle.h"
+#include "Wolf.h"
+#include "Grass.h"
+#include "Dandelion.h"
+#include "Guarana.h"
+#include "Hogweed.h"
+#include "Nightshade.h"
 
 #define UP 0
 #define DOWN 1

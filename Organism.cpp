@@ -1,5 +1,4 @@
-#include "Organism.h"
-#include <iostream>
+#include "Constants.h"
 
 Organism::Organism() {}
 
@@ -47,7 +46,7 @@ void Organism::SetInitiative(int initiative) {
 	this->initiative = initiative;
 }
 
-int Organism::getAge() {
+int Organism::GetAge() {
 	return age;
 }
 

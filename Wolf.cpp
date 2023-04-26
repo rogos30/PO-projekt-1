@@ -1,4 +1,4 @@
-#include "Wolf.h"
+#include "Constants.h"
 
 Wolf::Wolf(int positionX, int positionY, World* world) {
 	this->strength = 9;

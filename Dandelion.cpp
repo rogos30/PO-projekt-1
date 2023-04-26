@@ -1,4 +1,4 @@
-#include "Dandelion.h"
+#include "Constants.h"
 
 Dandelion::Dandelion(int positionX, int positionY, World* world) {
 	this->strength = 0;
@@ -10,6 +10,7 @@ Dandelion::Dandelion(int positionX, int positionY, World* world) {
 }
 
 void Dandelion::Action() {
+	this->age++;
 	for (int i = 0; i < DANDELION_SPREAD_TRIES; i++) {
 		int spread = rand() % PLANT_SPREAD_CHANCE;
 		if (spread == 0) {

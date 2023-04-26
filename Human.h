@@ -1,5 +1,5 @@
 #pragma once
-#include "Animal.h"
+#include "Constants.h"
 
 class Human : public Animal {
 private:

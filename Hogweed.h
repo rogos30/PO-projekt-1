@@ -1,5 +1,5 @@
 #pragma once
-#include "Plant.h"
+#include "Constants.h"
 
 class Hogweed : public Plant {
 public:

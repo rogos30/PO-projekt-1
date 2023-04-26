@@ -1,7 +1,5 @@
 #pragma once
 #include "Constants.h"
-#include <iostream>
-#include "Organism.h"
 
 class Organism;
 
@@ -13,9 +11,9 @@ class Node {
 	public:
 		Node(Organism* organism, Node* next);
 		~Node();
-		Organism* getOrganism();
-		Node* getNext();
-		void setNext(Node* next);
+		Organism* GetOrganism();
+		Node* GetNext();
+		void SetNext(Node* next);
 };
 
 class LinkedList {
@@ -25,13 +23,13 @@ class LinkedList {
 	public:
 		LinkedList();
 		~LinkedList();
-		void add(Organism* organism);
-		void remove(Organism* organism);
-		void remove(Node* node);
-		void removeHead();
-		void removeTail();
-		Node* getHead();
-		Node* getTail();
-		int getSize();
-		void print();
+		void Add(Organism* organism);
+		void Remove(Organism* organism);
+		void Remove(Node* node);
+		void RemoveHead();
+		void RemoveTail();
+		Node* GetHead();
+		Node* GetTail();
+		int GetSize();
+		void Print();
 };

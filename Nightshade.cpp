@@ -1,5 +1,4 @@
-#include "Nightshade.h"
-#include "Animal.h"
+#include "Constants.h"
 
 Nightshade::Nightshade(int positionX, int positionY, World* world) {
 	this->strength = 99;

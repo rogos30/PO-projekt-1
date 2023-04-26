@@ -1,4 +1,4 @@
-#include "Fox.h"
+#include "Constants.h"
 
 Fox::Fox(int positionX, int positionY, World* world) {
 	this->strength = 3;
@@ -33,6 +33,7 @@ void Fox::Reproduce() {
 }
 
 void Fox::Action() {
+	this->age++;
 	int direction = rand() % 4;
 	switch (direction) {
 	case UP:

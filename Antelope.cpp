@@ -1,4 +1,4 @@
-#include "Antelope.h"
+#include "Constants.h"
 
 Antelope::Antelope(int positionX, int positionY, World* world) {
 	this->strength = 4;
@@ -10,6 +10,7 @@ Antelope::Antelope(int positionX, int positionY, World* world) {
 }
 
 void Antelope::Action() {
+	this->age++;
 	int direction = rand() % 4;
 	switch (direction) {
 	case UP:
@@ -80,7 +81,8 @@ void Antelope::Action() {
 }
 
 bool Antelope::AttackAvoided() {
-	if (rand() % 2) return true;
+	int avoided = rand() %2;
+	if (avoided) return true;
 	else return false;
 }
 

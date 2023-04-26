@@ -1,5 +1,4 @@
-#include "Hogweed.h"
-#include "Animal.h"
+#include "Constants.h"
 
 Hogweed::Hogweed(int positionX, int positionY, World* world) {
 	this->strength = 10;
@@ -15,6 +14,7 @@ bool Hogweed::ReturnKill() {
 }
 
 void Hogweed::Action() {
+	this->age++;
 	//KILLING ANIMALS AROUND IT
 	if (GetPositionY() - 1 >= 0 && dynamic_cast<Animal*>(world->GetBoardAt(GetPositionX(), GetPositionY() - 1))) {
 		world->Kill(world->GetBoardAt(GetPositionX(), GetPositionY() - 1));

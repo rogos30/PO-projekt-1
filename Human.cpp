@@ -1,8 +1,8 @@
-#include "Human.h"
+#include "Constants.h"
 
 Human::Human(int positionX, int positionY, World* world) {
 	this->strength = 5;
-	this->initiative = 4;
+	this->initiative = 3;
 	this->abilityCooldown = 0;
 	this->positionX = positionX;
 	this->positionY = positionY;
@@ -11,6 +11,8 @@ Human::Human(int positionX, int positionY, World* world) {
 }
 
 void Human::Action() {
+	this->age++;
+	world->SetHumanAlive(true);
 	if (GetAbilityCooldown() >= 5) SetStrength(GetAbilityCooldown());
 	SetAbilityCooldown(GetAbilityCooldown() - 1);
 

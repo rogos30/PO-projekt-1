@@ -1,11 +1,9 @@
-#include <cstdlib>
-#include <iostream>
-#include "Animal.h"
 #include "Constants.h"
 
 Animal::Animal() {}
 
 void Animal::Action() {
+	this->age++;
 	int direction = rand() % 4;
 	switch (direction) {
 	case UP:
@@ -70,15 +68,15 @@ void Animal::Collision(Organism* organism) {
 			world->Kill(organism);
 			cout << this->symbol << " killed " << organism->GetSymbol();
 			if (organism->ReturnKill()) {
-				cout <<  " and " << organism->GetSymbol() << " return-killed " << this->GetSymbol();
+				cout <<  " and " << organism->GetSymbol() << " return-killed " << this->GetSymbol() << endl;
 				world->Kill(this);
 			}
 			else {
+				cout << endl;
 				world->Move(enemyX, enemyY, this);
 				SetPositionX(enemyX);
 				SetPositionY(enemyY);
 			}
-			cout << endl;
 		}
 		else if (organism->AttackReflected(this) == false && organism->AttackAvoided() == true) {
 			//ESCAPE UP
